@@ -12,13 +12,26 @@ namespace NewTestSix.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View("Views/Home/Index.cshtml");
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
+
+        // About view not populated with details yet. Seems like don't need to specify the full path.
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        // contact view not populated with details yet.
+        public IActionResult Contact()
+        {
+            return View("Views/Home/Contact.cshtml");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

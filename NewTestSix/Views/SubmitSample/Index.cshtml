@@ -1,11 +1,22 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using NewTestSix.Models
+
 @{
     ViewData["Title"] = "Sample Submission"; // sets the Title property of the ViewData dictionary to "Sample Submission". This is the browser tab title.
 } @{ // the Title property is used in the <title> HTML element in the _Layout.cshtml file.
 }
-<h2>Sample Submission</h2>
+<h2>Sample Submission Form</h2>
 
-<p> Fill in the required fields below.</p>
+@model NewTestSix.Models.RequestedAnalyses
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <b>Please select required analyses</b><br />
+    <span> Acid-stable amino acids </span> @Html.CheckBoxFor(m => m.AcidStables, false) <br />
+    <span> Sulfur amino acids </span> @Html.CheckBoxFor(m => m.Sulfurs, false) <br />
+    <span> Tryptophan </span> @Html.CheckBoxFor(m => m.Trp, false) <br />
+    <span> Free amino acids </span> @Html.CheckBoxFor(m => m.FAAs, false)
+}
 
+@Html.DropDownList("SampleMatrixOptions",
+    new SelectList(Enum.GetValues(typeof(SampleMatrixOptions))),
+    "Select sample matrix",
+    new { @class = "form-control"})

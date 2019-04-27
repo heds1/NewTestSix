@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using NewTestSix.Services;
+using NewTestSix.Models;
 
 namespace NewTestSix
 {
@@ -39,7 +40,7 @@ namespace NewTestSix
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection"))); // change to NewTestSixContext??
             services.AddDefaultIdentity<IdentityUser>(config =>
             {
                 config.SignIn.RequireConfirmedEmail = true;
@@ -61,6 +62,9 @@ namespace NewTestSix
                 o.ExpireTimeSpan = TimeSpan.FromDays(5);
                 o.SlidingExpiration = true;
             }); // lots user out after 5 days of inactivity
+
+            services.AddDbContext<NewTestSixContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("NewTestSixContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

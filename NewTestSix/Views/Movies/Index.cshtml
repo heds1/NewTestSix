@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.AcidStables)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ClientSampleID)
             </th>
             <th>
@@ -35,6 +38,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcidStables)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ClientSampleID)
                 </td>
@@ -59,4 +65,3 @@
         }
     </tbody>
 </table>
-

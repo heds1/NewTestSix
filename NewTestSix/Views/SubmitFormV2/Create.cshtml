@@ -1,0 +1,47 @@
+﻿@model NewTestSix.Models.SubmitFormV2
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Movie</h4>
+<form action="/Form/FormOne" method="post">
+
+    <span> Client sample ID </span>
+    <input type="text" name="ClientSampleID" /> <br />
+
+    <span> Acid-stable amino acids </span>
+    <input type="checkbox" name="AcidStables" /> <br />
+
+    <span> Sulfur amino acids </span>
+    <input type="checkbox" name="Sulfurs" /> <br />
+
+    <span> Tryptophan </span>
+    <input type="checkbox" name="Trp" /> <br />
+
+    <span> Free amino acids </span>
+    <input type="checkbox" name="Faas" /> <br />
+
+    <select class="form-control" id="SampleMatrixOptions" name="SampleMatrixOptions">
+        <option>Select sample matrix</option>
+        <option>Powder</option>
+        <option>Liquid</option>
+        <option>Other</option>
+    </select>
+
+    <span> Additional comments </span>
+    <input type="text" name="AdditionalComments" /> <br />
+
+    <input type="submit" value="Submit weakly typed form" />
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

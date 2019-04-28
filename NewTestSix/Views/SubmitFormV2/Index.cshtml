@@ -1,0 +1,59 @@
+﻿@model IEnumerable<NewTestSix.Models.SubmitFormV2>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientSampleID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcidStables)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sulfurs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FAAs)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientSampleID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcidStables)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sulfurs)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FAAs)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

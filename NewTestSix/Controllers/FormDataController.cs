@@ -9,69 +9,74 @@ using NewTestSix.Models;
 
 namespace NewTestSix.Controllers
 {
-    public class MoviesController : Controller
+    public class FormDataController : Controller
     {
         private readonly NewTestSixContext _context;
 
-        public MoviesController(NewTestSixContext context)
+        public FormDataController(NewTestSixContext context)
         {
             _context = context;
         }
 
-        //[HttpPost]
-        //public ActionResult Index(Movie u)
-        //{
-        //    ViewBag.AcidStables = u.AcidStables;
-        //    return View();
-        //}
-
-        // GET: Movies
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        public void FormOne(string textBoxStringData, int textBoxIntData, string checkboxData)
         {
-            return View(await _context.Movie.ToListAsync());
+            //Do something
         }
 
-        // GET: Movies/Details/5
+        [HttpPost]
+        public void FormTwo(Models.FormData formData)
+        {
+            //Do something with formData
+        }
+
+        // GET: FormData
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.FormData.ToListAsync());
+        }
+
+        // GET: FormData/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            // select movie entities that match the route data or query string value
-            var movie = await _context.Movie
+
+            var formData = await _context.FormData
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            if (formData == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(formData);
         }
 
-        // GET: Movies/Create
+        // GET: FormData/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Movies/Create
+        // POST: FormData/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AcidStables,ClientSampleID,Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,TextBoxStringData,TextBoxIntData,CheckboxData")] FormData formData)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movie);
+                _context.Add(formData);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View(formData);
         }
 
-        // GET: Movies/Edit/5
+        // GET: FormData/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,22 +84,22 @@ namespace NewTestSix.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FindAsync(id);
-            if (movie == null)
+            var formData = await _context.FormData.FindAsync(id);
+            if (formData == null)
             {
                 return NotFound();
             }
-            return View(movie);
+            return View(formData);
         }
 
-        // POST: Movies/Edit/5
+        // POST: FormData/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AcidStables,ClientSampleID,Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TextBoxStringData,TextBoxIntData,CheckboxData")] FormData formData)
         {
-            if (id != movie.Id)
+            if (id != formData.Id)
             {
                 return NotFound();
             }
@@ -103,12 +108,12 @@ namespace NewTestSix.Controllers
             {
                 try
                 {
-                    _context.Update(movie);
+                    _context.Update(formData);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.Id))
+                    if (!FormDataExists(formData.Id))
                     {
                         return NotFound();
                     }
@@ -119,10 +124,10 @@ namespace NewTestSix.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View(formData);
         }
 
-        // GET: Movies/Delete/5
+        // GET: FormData/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,30 +135,30 @@ namespace NewTestSix.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
+            var formData = await _context.FormData
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            if (formData == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(formData);
         }
 
-        // POST: Movies/Delete/5
+        // POST: FormData/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movie = await _context.Movie.FindAsync(id);
-            _context.Movie.Remove(movie);
+            var formData = await _context.FormData.FindAsync(id);
+            _context.FormData.Remove(formData);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MovieExists(int id)
+        private bool FormDataExists(int id)
         {
-            return _context.Movie.Any(e => e.Id == id);
+            return _context.FormData.Any(e => e.Id == id);
         }
     }
 }

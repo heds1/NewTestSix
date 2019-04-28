@@ -7,36 +7,62 @@
 
 <h1>Create</h1>
 
-<h4>Movie</h4>
-<form action="/Form/FormOne" method="post">
+<h4>Sample submission form</h4>
 
-    <span> Client sample ID </span>
-    <input type="text" name="ClientSampleID" /> <br />
 
-    <span> Acid-stable amino acids </span>
-    <input type="checkbox" name="AcidStables" /> <br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
 
-    <span> Sulfur amino acids </span>
-    <input type="checkbox" name="Sulfurs" /> <br />
+            <div class="form-group">
+                <label asp-for="ClientSampleID" class="control-label"></label>
+                <input asp-for="ClientSampleID" class="form-control" />
+                <span asp-validation-for="ClientSampleID" class="text-danger"></span>
+            </div>
 
-    <span> Tryptophan </span>
-    <input type="checkbox" name="Trp" /> <br />
+            <div class="form-group">
+                <label asp-for="AcidStables" class="control-label"></label>
+                <input asp-for="AcidStables" class="form-control" />
+                <span asp-validation-for="AcidStables" class="text-danger"></span>
+            </div>
 
-    <span> Free amino acids </span>
-    <input type="checkbox" name="Faas" /> <br />
+            <div class="form-group">
+                <label asp-for="Sulfurs" class="control-label"></label>
+                <input asp-for="Sulfurs" class="form-control" />
+                <span asp-validation-for="Sulfurs" class="text-danger"></span>
+            </div>
 
-    <select class="form-control" id="SampleMatrixOptions" name="SampleMatrixOptions">
-        <option>Select sample matrix</option>
-        <option>Powder</option>
-        <option>Liquid</option>
-        <option>Other</option>
-    </select>
+            <div class="form-group">
+                <label asp-for="Trp" class="control-label"></label>
+                <input asp-for="Trp" class="form-control" />
+                <span asp-validation-for="Trp" class="text-danger"></span>
+            </div>
 
-    <span> Additional comments </span>
-    <input type="text" name="AdditionalComments" /> <br />
+            <div class="form-group">
+                <label asp-for="FAAs" class="control-label"></label>
+                <input asp-for="FAAs" class="form-control" />
+                <span asp-validation-for="FAAs" class="text-danger"></span>
+            </div>
 
-    <input type="submit" value="Submit weakly typed form" />
-</form>
+            <div class="form-group">
+                @Html.DropDownList("_sampleMatrix",
+                    new SelectList(Enum.GetValues(typeof(SampleMatrixOptions))),
+                    "Select sample matrix",
+                    new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AdditionalComments" class="control-label"></label>
+                <input asp-for="AdditionalComments" class="form-control" />
+                <span asp-validation-for="AdditionalComments" class="text-danger"></span>
+            </div>
+
+            <input type="submit" value="Submit!" />
+        </form>
+    </div>
+</div>
+
+
 
 <div>
     <a asp-action="Index">Back to List</a>

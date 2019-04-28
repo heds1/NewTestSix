@@ -43,18 +43,19 @@ namespace NewTestSix.Controllers
             return View(submitFormV2);
         }
 
-        // GET: FormData/Create
+        // GET: SubmitFormV2/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: FormData/Create
+
+        // POST: SubmitFormV2/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClientSampleID")] SubmitFormV2 submitFormV2)
+        public async Task<IActionResult> Create([Bind("ClientSampleID,AcidStables,Sulfurs,Trp,FAAs,AdditionalComments,_sampleMatrix")] SubmitFormV2 submitFormV2)
         {
             if (ModelState.IsValid)
             {

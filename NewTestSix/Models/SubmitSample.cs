@@ -18,6 +18,8 @@ namespace NewTestSix.Models
         public string Genre { get; set; }
         public decimal Price { get; set; }
 
+        public bool AcidStables { get; set; }
+        //public string AcidStables { get; set; }
     }
 
 

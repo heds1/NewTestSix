@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewTestSix.Models;
 
 namespace NewTestSix.Migrations
 {
     [DbContext(typeof(NewTestSixContext))]
-    partial class NewTestSixContextModelSnapshot : ModelSnapshot
+    [Migration("20190427224142_FormTestOne")]
+    partial class FormTestOne
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,29 +59,6 @@ namespace NewTestSix.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Movie");
-                });
-
-            modelBuilder.Entity("NewTestSix.Models.SubmitFormV2", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("AcidStables");
-
-                    b.Property<string>("AdditionalComments");
-
-                    b.Property<string>("ClientSampleID");
-
-                    b.Property<bool>("FAAs");
-
-                    b.Property<bool>("Sulfurs");
-
-                    b.Property<bool>("Trp");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SubmitFormV2");
                 });
 #pragma warning restore 612, 618
         }

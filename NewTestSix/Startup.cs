@@ -61,7 +61,7 @@ namespace NewTestSix
             services.ConfigureApplicationCookie(o => {
                 o.ExpireTimeSpan = TimeSpan.FromDays(5);
                 o.SlidingExpiration = true;
-            }); // lots user out after 5 days of inactivity
+            }); // logs user out after 5 days of inactivity
 
             services.AddDbContext<NewTestSixContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("NewTestSixContext")));
@@ -90,9 +90,10 @@ namespace NewTestSix
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+            routes.MapRoute(
+                name: "default",
+                //template: "{controller=Home}/{action=Index}/{id?}");
+                template: "{controller=SubmitFormV2}/{action=Index}/{id?}"); // routing to start app on the development page
             });
         }
     }

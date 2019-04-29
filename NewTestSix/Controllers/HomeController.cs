@@ -13,6 +13,7 @@ namespace NewTestSix.Controllers
         public IActionResult Index()
         {
             return View("Views/Home/Index.cshtml");
+            //return View("Views/SubmitFormV2/Index.cshtml"); // doesn't work to change startup page
         }
 
         public IActionResult Privacy()

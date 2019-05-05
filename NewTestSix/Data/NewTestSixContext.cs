@@ -19,5 +19,7 @@ namespace NewTestSix.Models
         public DbSet<NewTestSix.Models.FormData> FormData { get; set; }
 
         public DbSet<NewTestSix.Models.SubmitFormV2> SubmitFormV2 { get; set; }
+
+        public DbSet<NewTestSix.Models.TableForm> TableForm { get; set; }
     }
 }

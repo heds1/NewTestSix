@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+<fieldset>
+    <legend>Sample submission</legend>
+    <table id="clientTable" class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Sample ID</td>
+                <td>Acid-stable amino acids</td>
+                <td>Sulfur amino acids</td>
+                <td>Tryptophan</td>
+                <td>Free amino acids</td>
+                <td>Sample matrix</td>
+                <td></td>
+            </tr>
+        </thead>
+
+        <tr id="tablerow0">
+            <td>
+                <div class="editor-field">
+                    <input class="text-box single-line" name="ClientSampleID[0]" type="text" value="" required="required" />
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    <input type="text" class="text-box single-line" name="AcidStables[0]" value="" />
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    <input type="checkbox" class="checkbox" name="Sulfurs[0]" value="" />
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    <input type="checkbox" class="checkbox" name="Trp[0]" value="" />
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    <input type="checkbox" class="checkbox" name="FAAs[0]" value="" />
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    @Html.DropDownList("_sampleMatrix",
+                   new SelectList(Enum.GetValues(typeof(SampleMatrixOptions))),
+                   "Select sample matrix",
+                   new { @class = "form-control" })
+                </div>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="removeTr(0);">Delete</button>
+            </td>
+        </tr>
+
+    </table>
+
+
+    <p>
+        <button id="addButton" type="submit" class="btn btn-primary">Add anothe sample</button>
+    </p>
+    <hr />
+
+    <p>
+        <button type="submit" class="btn btn-primary">Submit sample(s)</button>
+    </p>
+</fieldset>
+}
+
+
+@section Scripts {
+
+    <script src="~/bundles/jqueryval.js" type="text/javascript">
+        var counter = 1;
+        $(function () {
+
+            $('#addButton').click(function () {
+                $('<tr id="tablerow' + counter + '"><td>' +
+                    '<input class="text-box single-line" name="ClientName[' + counter + ']" type="text" value="" required="required" />' +
+                    '</td>' +
+                    '<td>' +
+                    '<input type="email" class="text-box single-line" name="Email[' + counter + ']" value="" required="required" />' +
+                    '</td>' +
+                    '<td>' +
+                    '<button type="button" class="btn btn-primary" onclick="removeTr(' + counter + ');">Delete</button>' +
+                    '</td>' +
+                    '</tr>').appendTo('#clientTable');
+                counter++;
+                return false;
+            });
+        });
+        function removeTr(index) {
+            if (counter > 1) {
+                $('#tablerow' + index).remove();
+                counter--;
+            }
+            return false;
+        }
+    </script>
+}

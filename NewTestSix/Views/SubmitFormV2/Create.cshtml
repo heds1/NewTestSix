@@ -8,8 +8,9 @@
 <h4>Sample submission form</h4>
 
 
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
 
             <div class="form-group">
@@ -18,27 +19,27 @@
                 <span asp-validation-for="ClientSampleID" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="checkbox">
+                <input asp-for="AcidStables" class="form-control" type="checkbox" />
                 <label asp-for="AcidStables" class="control-label"></label>
-                <input asp-for="AcidStables" class="form-control" />
                 <span asp-validation-for="AcidStables" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Sulfurs" class="control-label"></label>
+            <div class="checkbox">
                 <input asp-for="Sulfurs" class="form-control" />
+                <label asp-for="Sulfurs" class="control-label"></label>
                 <span asp-validation-for="Sulfurs" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Trp" class="control-label"></label>
+            <div class="checkbox">
                 <input asp-for="Trp" class="form-control" />
+                <label asp-for="Trp" class="control-label"></label>
                 <span asp-validation-for="Trp" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="FAAs" class="control-label"></label>
+            <div class="checkbox">
                 <input asp-for="FAAs" class="form-control" />
+                <label asp-for="FAAs" class="control-label"></label>
                 <span asp-validation-for="FAAs" class="text-danger"></span>
             </div>
 

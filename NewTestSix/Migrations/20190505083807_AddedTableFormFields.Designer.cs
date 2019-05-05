@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewTestSix.Models;
 
 namespace NewTestSix.Migrations
 {
     [DbContext(typeof(NewTestSixContext))]
-    partial class NewTestSixContextModelSnapshot : ModelSnapshot
+    [Migration("20190505083807_AddedTableFormFields")]
+    partial class AddedTableFormFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,8 +107,6 @@ namespace NewTestSix.Migrations
                     b.Property<bool>("Sulfurs");
 
                     b.Property<bool>("Trp");
-
-                    b.Property<int>("_sampleMatrix");
 
                     b.HasKey("Id");
 

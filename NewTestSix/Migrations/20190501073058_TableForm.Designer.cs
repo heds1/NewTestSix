@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewTestSix.Models;
 
 namespace NewTestSix.Migrations
 {
     [DbContext(typeof(NewTestSixContext))]
-    partial class NewTestSixContextModelSnapshot : ModelSnapshot
+    [Migration("20190501073058_TableForm")]
+    partial class TableForm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,7 +94,7 @@ namespace NewTestSix.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AcidStables");
+                    b.Property<bool>("AcidStables");
 
                     b.Property<string>("AdditionalComments");
 
@@ -100,13 +102,7 @@ namespace NewTestSix.Migrations
                         .IsRequired()
                         .HasMaxLength(60);
 
-                    b.Property<bool>("FAAs");
-
                     b.Property<bool>("Sulfurs");
-
-                    b.Property<bool>("Trp");
-
-                    b.Property<int>("_sampleMatrix");
 
                     b.HasKey("Id");
 

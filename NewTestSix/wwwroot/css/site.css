@@ -54,3 +54,22 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+/* Make checkbox and its label on the same line.*/
+.checkbox .control-label {
+    padding-left: 15px;
+    width: 60%;
+    vertical-align: -5px
+}
+
+.checkbox input[type="checkbox"] {
+    float: left;
+    width: 1%;
+}
+
+.checkbox:after {
+    content: '';
+    display: block;
+    clear: both;
+}

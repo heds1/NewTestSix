@@ -42,6 +42,41 @@ namespace NewTestSix.Models
         [Display(Name = "Sample matrix")]
         [Required]
         public SampleMatrixOptions _sampleMatrix { get; set; }
-
     }
+
+    //public class TableForm
+    //{
+    //    public int Id { get; set; }
+    //    public List<TableFormData> TableFormDatas { get; set; }
+    //    public string ClientSampleID { get; set; }
+    //    public string AcidStables { get; set; }
+    //    public string Sulfurs { get; set; }
+    //    public string FAAs { get; set; }
+    //    public string Trp { get; set; }
+    //    public string AdditionalComments { get; set; }
+
+    //}
+    //// TableForm is equivalent of member class
+    //// TableFormData is equivalent of User class. Contains the properties of TableForm...
+    //public class TableFormData
+    //{
+    //    public int Id { get; set; }
+    //    public string ClientSampleID { get; set; }
+    //    public string AdditionalComments { get; set; }
+    //    public string AcidStables { get; set; }
+    //}
+
+    //public class User
+    //{
+    //    public int Id { get; set; }
+    //    public string FirstName { get; set; }
+    //    public string LastName { get; set; }
+    //}
+
+    //public class Member
+    //{
+    //    public int MemberId { get; set; }
+    //    public List<User> Users { get; set; }
+    //}
+
 }

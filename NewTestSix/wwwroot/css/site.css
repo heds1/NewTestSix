@@ -73,3 +73,12 @@ body {
     display: block;
     clear: both;
 }
+
+/* adjust table settings for TableForm table */
+/*table {
+    table-layout: fixed;
+}
+
+th.Tryptophan {
+    width: 15%;
+}*/

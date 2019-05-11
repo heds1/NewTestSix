@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NewTestSix.Models;
+using Newtonsoft.Json;
 
 namespace NewTestSix.Controllers
 {
@@ -49,6 +50,52 @@ namespace NewTestSix.Controllers
             return View();
         }
 
+
+
+        // POST: TableForm/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("ClientSampleID,AcidStables,Sulfurs,Trp,FAAs,AdditionalComments,_sampleMatrix")] TableForm tableForm)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(tableForm);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(tableForm);
+        //}
+
+
+        //// POST: Employees/Create
+        //[HttpPost]
+        //public ActionResult Create(TableForm tableForm)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View("Create", tableForm);
+        //    }
+
+        //    // Save the created employee object
+
+        //    return RedirectToAction("Index");
+        //}
+
+        [HttpPost]
+        public async Task<IActionResult> AddSample(TableForm tableForm)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.AddRange(tableForm);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View(tableForm);
+        }
+
         [HttpPost]
         public ActionResult Index(string any = "")
         {
@@ -58,34 +105,20 @@ namespace NewTestSix.Controllers
             for (int i = 0; i <= Request.Form.Count; i++)
             {
                 var ClientSampleID = Request.Form["ClientSampleID[" + i + "]"];
+                var additionalComments = Request.Form["AdditionalComments[" + i + "]"];
                 var acidStables = Request.Form["AcidStables[" + i + "]"];
-                //bool sulfurs = Request.Form["Sulfurs[i]"];
-
 
                 if (!String.IsNullOrEmpty(ClientSampleID))
                 {
-                    _TableForm.Add(new TableForm { ClientSampleID = ClientSampleID, AcidStables = acidStables });
+                    _TableForm.Add(new TableForm { ClientSampleID = ClientSampleID, AcidStables = acidStables, AdditionalComments = additionalComments });
                 }
             }
 
-            //Once you got the records then you can do anything
             return View();
         }
-
-        // POST: SubmitFormV2/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientSampleID,AcidStables,Sulfurs,Trp,FAAs,AdditionalComments,_sampleMatrix")] TableForm tableForm)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tableForm);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tableForm);
-        }
     }
+    
 }
+
+
+

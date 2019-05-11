@@ -93,7 +93,7 @@ namespace NewTestSix
             routes.MapRoute(
                 name: "default",
                 //template: "{controller=Home}/{action=Index}/{id?}");
-                template: "{controller=SubmitFormV2}/{action=Index}/{id?}"); // routing to start app on the development page
+                template: "{controller=TableForm}/{action=Index}/{id?}"); // routing to start app on the development page
             });
         }
     }

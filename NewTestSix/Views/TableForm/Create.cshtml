@@ -1,4 +1,5 @@
-﻿
+﻿@model NewTestSix.Models.TableForm
+
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,92 +9,120 @@
 {
     @Html.ValidationSummary(true)
 
-<fieldset>
-    <legend>Sample submission</legend>
-    <table id="clientTable" class="table table-bordered">
-        <thead>
-            <tr>
-                <td>Sample ID</td>
-                <td>Acid-stable amino acids</td>
-                <td>Sulfur amino acids</td>
-                <td>Tryptophan</td>
-                <td>Free amino acids</td>
-                <td>Sample matrix</td>
-                <td></td>
-            </tr>
-        </thead>
+    <fieldset>
+        <legend>Sample submission</legend>
+        <table id="submissionTable" class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>Sample ID</td>
+                    <td>Acid-stable amino acids</td>
+                    <td>Sulfur amino acids</td>
+                    <td>Tryptophan</td>
+                    <td>Free amino acids</td>
+                    <td>Sample matrix</td>
+                    <td>Additional Comments</td>
+                </tr>
+            </thead>
 
-        <tr id="tablerow0">
-            <td>
-                <div class="editor-field">
-                    <input class="text-box single-line" name="ClientSampleID[0]" type="text" value="" required="required" />
-                </div>
-            </td>
-            <td>
-                <div class="editor-field">
-                    <input type="text" class="text-box single-line" name="AcidStables[0]" value="" />
-                </div>
-            </td>
-            <td>
-                <div class="editor-field">
-                    <input type="checkbox" class="checkbox" name="Sulfurs[0]" value="" />
-                </div>
-            </td>
-            <td>
-                <div class="editor-field">
-                    <input type="checkbox" class="checkbox" name="Trp[0]" value="" />
-                </div>
-            </td>
-            <td>
-                <div class="editor-field">
-                    <input type="checkbox" class="checkbox" name="FAAs[0]" value="" />
-                </div>
-            </td>
-            <td>
-                <div class="form-group">
+            <tr id="tablerow0">
+                <td width="10">
+                    <div class="editor-field">
+                        <input class="text-box single-line"
+                               name="ClientSampleID[0]"
+                               type="text"
+                               value=""
+                               required="required" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <input name="AcidStables[0]"
+                               type="checkbox"
+                               value="" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <input name="Sulfurs[0]"
+                               type="checkbox"
+                               value="" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <input name="Trp[0]"
+                               type="checkbox"
+                               value="" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <input name="FAAs[0]"
+                               type="checkbox"
+                               value="" />
+                    </div>
+                </td>
+                <td>
                     @Html.DropDownList("_sampleMatrix",
-                   new SelectList(Enum.GetValues(typeof(SampleMatrixOptions))),
-                   "Select sample matrix",
-                   new { @class = "form-control" })
-                </div>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary" onclick="removeTr(0);">Delete</button>
-            </td>
-        </tr>
+                        new SelectList(Enum.GetValues(typeof(SampleMatrixOptions))),
+                        "Select",
+                        new { @class = "form-control" })
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <input class="text-box single-line"
+                               name="AdditionalComments[0]"
+                               type="text"
+                               value="" />
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" onclick="removeTr(0);">Delete</button>
+                </td>
+            </tr>
 
-    </table>
+        </table>
+        <p>
+            <button id="add" class="btn btn-primary">Add</button>
+        </p>
+        <hr />
 
-
-    <p>
-        <button id="addButton" type="submit" class="btn btn-primary">Add anothe sample</button>
-    </p>
-    <hr />
-
-    <p>
-        <button type="submit" class="btn btn-primary">Submit sample(s)</button>
-    </p>
-</fieldset>
+        <p>
+            <input type="submit" value="Create" class="btn btn-default" />
+        </p>
+    </fieldset>
 }
 
-
 @section Scripts {
-
-    <script src="~/bundles/jqueryval.js" type="text/javascript">
+    <script type="text/javascript">
         var counter = 1;
         $(function () {
 
-            $('#addButton').click(function () {
+            $('#add').click(function () {
                 $('<tr id="tablerow' + counter + '"><td>' +
-                    '<input class="text-box single-line" name="ClientName[' + counter + ']" type="text" value="" required="required" />' +
+                    '<input type="text" class="text-box single-line" name="ClientSampleID[' + counter + ']" value="" required="required" />' +
                     '</td>' +
                     '<td>' +
-                    '<input type="email" class="text-box single-line" name="Email[' + counter + ']" value="" required="required" />' +
+                    '<input type="checkbox" class="checkbox" name="AcidStables[' + counter + ']" value="" />' +
+                    '</td>' +
+                    '<td>' +
+                    '<input type="checkbox" class="checkbox" name="Sulfurs[' + counter + ']" value="" />' +
+                    '</td>' +
+                    '<td>' +
+                    '<input type="checkbox" class="checkbox" name="Trp[' + counter + ']" value="" />' +
+                    '</td>' +
+                    '<td>' +
+                    '<input type="checkbox" class="checkbox" name="FAAs[' + counter + ']" value="" />' +
+                    '</td>' +
+                    '<td>' +
+                    '<input type="text" class="text-box single-line" name="AdditionalComments[' + counter + ']" value="" />' +
+                    '</td>' +
+                    '<td>' +
                     '</td>' +
                     '<td>' +
                     '<button type="button" class="btn btn-primary" onclick="removeTr(' + counter + ');">Delete</button>' +
                     '</td>' +
-                    '</tr>').appendTo('#clientTable');
+                    '</tr>').appendTo('#submissionTable');
                 counter++;
                 return false;
             });
@@ -107,3 +136,19 @@
         }
     </script>
 }
+
+
+<!-- $("#btnAdd").click(function () {
+        var td1 = '<td>@Html.EditorFor(modelItem => modelItem.ClientSampleID, new { htmlAttributes = new { @class = "form-control" } })</td>';
+        $('#AcidStables').attr('value', $('#AcidStables').val());
+        $('#Sulfurs').attr('value', $('#Sulfurs').val());
+        $('#Trp').attr('value', $('#Trp').val());
+        $('#FAAs').attr('value', $('#FAAs').val());
+        $('#_sampleMatrix').attr('value', $('#_sampleMatrix').val());
+        var td2 = document.getElementById('AcidStables').parentElement.outerHTML; //repeat
+        var td3 = document.getElementById('Sulfurs').parentElement.outerHTML; //repeat
+        var td4 = document.getElementById('Trp').parentElement.outerHTML; //repeat
+        var td5 = document.getElementById('FAAs').parentElement.outerHTML; //repeat
+        var td6 = document.getElementById('_sampleMatrix').parentElement.outerHTML; //repeat
+        $("tbody").append('<tr>' + td1 + td2 + td3 + td4 + td5 + td6 + '</tr>');
+        });-->
